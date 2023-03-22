@@ -8,18 +8,21 @@ interface EditorScreenControllerProps {
   subreddit: string;
   postId: string;
   commentId: string | null;
+  accessToken: string;
 }
 
 export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
   subreddit,
   postId,
   commentId,
+  accessToken,
 }) => {
   const { commentSort } = useEditorData();
   const { data, isLoading, isError } = useRedditData(
     subreddit,
     postId,
     commentId,
+    accessToken,
     commentSort
   );
 

@@ -16,11 +16,13 @@ export const EditorScreenProvider: React.FC = () => {
   const subreddit = params.get("sub");
   const postId = params.get("postId");
   const commentId = params.get("commentId");
+  const accessToken = params.get("accessToken");
 
-  if (subreddit && postId) {
+  if (subreddit && postId && accessToken) {
     return (
       <EditorContextProvider>
         <EditorScreenController
+          accessToken={accessToken}
           commentId={commentId}
           postId={postId}
           subreddit={subreddit}

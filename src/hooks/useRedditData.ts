@@ -19,6 +19,7 @@ const fetchRedditData = async (
   subreddit: string,
   postId: string,
   commentId: string | null,
+  accessToken: string,
   sort: CommentSort
 ): Promise<[RedditSubmission, Array<RedditComment | MoreChildren>]> => {
   const endpoint = commentId
@@ -28,7 +29,7 @@ const fetchRedditData = async (
     [Listing<ListedRawSubmission>, Listing<ListedRawComment>]
   >(endpoint, {
     headers: {
-      "Authorization": "bearer <>"
+      "Authorization": `bearer ${accessToken}`
     }
   });
   const submissionListing = res.data[0];
@@ -48,10 +49,11 @@ export const useRedditData = (
   subreddit: string,
   postId: string,
   commentId: string | null,
+  accessToken: string,
   sort: CommentSort
 ) => {
   const axios = useAxios();
   return useQuery(["comments", subreddit, postId, commentId, sort], () =>
-    fetchRedditData(axios, subreddit, postId, commentId, sort)
+    fetchRedditData(axios, subreddit, postId, commentId, accessToken, sort)
   );
 };
