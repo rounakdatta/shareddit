@@ -26,7 +26,11 @@ const fetchRedditData = async (
     : `/r/${subreddit}/comments/${postId}/.json?raw_json=1&sort=${sort}`;
   const res = await axios.get<
     [Listing<ListedRawSubmission>, Listing<ListedRawComment>]
-  >(endpoint);
+  >(endpoint, {
+    headers: {
+      "Authorization": "bearer <>"
+    }
+  });
   const submissionListing = res.data[0];
   const commentListing = res.data[1];
 

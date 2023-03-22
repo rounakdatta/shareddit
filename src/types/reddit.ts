@@ -47,6 +47,7 @@ export interface RawComment extends RedditContent {
   body_html: string;
   depth: number;
   replies?: Listing<ListedRawComment>;
+  likes?: boolean;
 }
 
 export type ListedRawComment =

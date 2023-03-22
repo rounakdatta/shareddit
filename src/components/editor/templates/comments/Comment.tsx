@@ -59,6 +59,11 @@ export const Comment: React.FC<CommentProps> = ({
             style={{
               marginTop,
               marginBottom: "4px",
+              padding: data.likes ? "8px": "",
+              borderStyle: data.likes ? "dotted" : "",
+              borderWidth: data.likes ? 2 : "",
+              borderColor: data.likes ? "crimson" : "",
+              borderRadius: data.likes ? 8   : "",
             }}
           >
             <Flex>

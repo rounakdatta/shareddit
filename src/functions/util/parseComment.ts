@@ -8,10 +8,15 @@ import { parseScore } from "./parseScore";
 export const parseComment = (
   comment: RawComment,
   modhash: string
-): RedditComment => {
+): RedditComment | null => {
   const replies = comment.replies
     ? parseComments(comment.replies.data.children, modhash)
     : [];
+
+    // if neither the comment or any of its children are not liked, we skip it
+    if (comment.likes == null && replies.length === 0) {
+      return null
+    }
   return {
     ...comment,
     type: "comment",
