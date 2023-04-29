@@ -85,16 +85,15 @@ export class EditorContextProvider extends React.Component<
     this.setState({ ...this.state, [key]: value });
   };
 
-  downloadImage = (base64: string) => {
+  downloadImage = (base64: string, postId: string) => {
     const click = new MouseEvent("click", {
       view: window,
       bubbles: false,
       cancelable: true,
     });
     const a = document.createElement("a");
-    const fileName = Math.random().toString(36).substring(2,7);
 
-    a.setAttribute("download", `${fileName}.png`);
+    a.setAttribute("download", `${postId}.png`);
     a.setAttribute("href", base64);
     a.setAttribute("target", "_blank");
     a.dispatchEvent(click);
@@ -125,14 +124,28 @@ export class EditorContextProvider extends React.Component<
     return dataURL;
   };
 
+  getPostId = async () => {
+    const node = document.getElementById("reddit-preview");
+    if (!node) {
+      alert(
+        "There is an issue with the editor. Can't determine the ID of the post."
+      );
+      return;
+    }
+
+    const postId = node.getAttribute("data-post-id")
+    return postId;
+  };
+
   download = async () => {
     this.setState({ isLoading: true });
     const data = await this.makeDataURL();
+    const postId = await this.getPostId()
     if (!data) {
       alert("Something went wrong");
       return;
     }
-    this.downloadImage(data);
+    this.downloadImage(data, postId);
     this.setState({ isLoading: false });
   };
 
