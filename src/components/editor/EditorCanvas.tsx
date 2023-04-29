@@ -49,6 +49,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
         id="reddit-preview"
         justify={justify}
         textAlign="left"
+        data-post-id="SOMETHING"
         {...props}
       >
         <Flex direction="column" gap="8px">
