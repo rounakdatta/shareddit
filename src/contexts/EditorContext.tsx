@@ -92,8 +92,9 @@ export class EditorContextProvider extends React.Component<
       cancelable: true,
     });
     const a = document.createElement("a");
+    const fileName = base64.slice(-8);
 
-    a.setAttribute("download", `${base64}.png`);
+    a.setAttribute("download", `${fileName}.png`);
     a.setAttribute("href", base64);
     a.setAttribute("target", "_blank");
     a.dispatchEvent(click);
