@@ -92,7 +92,7 @@ export class EditorContextProvider extends React.Component<
       cancelable: true,
     });
     const a = document.createElement("a");
-    const fileName = base64.slice(-8);
+    const fileName = Math.random().toString(36).substring(2,7);
 
     a.setAttribute("download", `${fileName}.png`);
     a.setAttribute("href", base64);
