@@ -27,6 +27,6 @@ export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
   );
 
   return (
-    <EditorScreenView data={data} isError={isError} isLoading={isLoading} />
+    <EditorScreenView data={data} isError={isError} isLoading={isLoading} postId={postId} />
   );
 };

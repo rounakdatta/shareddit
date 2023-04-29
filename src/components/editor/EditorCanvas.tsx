@@ -19,6 +19,7 @@ interface EditorCanvasProps extends FlexProps {
   isError: boolean;
   submission: RedditSubmission | undefined;
   comments: (RedditComment | MoreChildren)[] | undefined;
+  postId: string
 }
 
 export const EditorCanvas: React.FC<EditorCanvasProps> = ({
@@ -26,6 +27,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   comments,
   isLoading,
   isError,
+  postId,
   ...props
 }) => {
   const { theme, showComments, topLevelComments } = useEditorData();
@@ -45,11 +47,11 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
       <Flex
         align={align}
         backgroundColor={backgroundColor}
+        data-post-id={postId}
         height="100%"
         id="reddit-preview"
         justify={justify}
         textAlign="left"
-        data-post-id="SOMETHING"
         {...props}
       >
         <Flex direction="column" gap="8px">

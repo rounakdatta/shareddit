@@ -13,12 +13,14 @@ interface EditorScreenViewProps {
   data: [RedditSubmission, (RedditComment | MoreChildren)[]] | undefined;
   isLoading: boolean;
   isError: boolean;
+  postId: string;
 }
 
 export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
   data,
   isLoading,
   isError,
+  postId,
 }) => {
   const submission = data ? data[0] : undefined;
   const comments = data ? data[1] : undefined;
@@ -38,6 +40,7 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
           isError={isError}
           isLoading={isLoading}
           maxHeight="calc(100vh - 96px - 32px)"
+          postId={postId}
           submission={submission}
         />
       </Grid>
