@@ -140,8 +140,8 @@ export class EditorContextProvider extends React.Component<
   download = async () => {
     this.setState({ isLoading: true });
     const data = await this.makeDataURL();
-    const postId = await this.getPostId()
-    if (!data) {
+    const postId = await this.getPostId();
+    if (!data || !postId) {
       alert("Something went wrong");
       return;
     }
